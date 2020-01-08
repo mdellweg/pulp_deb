@@ -30,6 +30,8 @@ from pulpcore.plugin.stages import (
     ResolveContentFutures,
 )
 
+from pulp_file.app.models import FileContent
+
 from pulp_deb.app.models import (
     GenericContent,
     Release,
@@ -297,7 +299,7 @@ class DebDropEmptyContent(Stage):
 
     async def run(self):
         """
-        Drop GenericContent units if they have no artifacts left.
+        Drop content units if they have no artifacts left.
         """
         async for d_content in self.items():
             if d_content.d_artifacts:  # Should there be artifacts?
@@ -584,7 +586,7 @@ class DebFirstStage(Stage):
         for filename, digests in file_list.items():
             relpath = os.path.join(installer_file_index.relative_path, filename)
             urlpath = os.path.join(self.parsed_url.path, relpath)
-            content_unit = GenericContent(sha256=digests["sha256"], relative_path=relpath)
+            content_unit = FileContent(digest=digests["sha256"], relative_path=relpath)
             d_artifact = DeclarativeArtifact(
                 artifact=Artifact(**digests),
                 url=urlunparse(self.parsed_url._replace(path=urlpath)),
@@ -610,7 +612,7 @@ class DebFirstStage(Stage):
             translations[key]["d_artifacts"].append(d_artifact)
 
         for relative_path, translation in translations.items():
-            content_unit = GenericContent(sha256=translation["sha256"], relative_path=relative_path)
+            content_unit = FileContent(digest=translation["sha256"], relative_path=relative_path)
             await self.put(
                 DeclarativeContent(content=content_unit, d_artifacts=translation["d_artifacts"])
             )

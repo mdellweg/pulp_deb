@@ -2,6 +2,8 @@ from logging import getLogger
 
 from pulpcore.plugin.models import Repository
 
+from pulp_file.app.models import FileContent
+
 from pulp_deb.app.models import (
     GenericContent,
     ReleaseFile,
@@ -25,6 +27,7 @@ class DebRepository(Repository):
 
     TYPE = "deb"
     CONTENT_TYPES = [
+        FileContent,
         GenericContent,
         ReleaseFile,
         PackageIndex,
