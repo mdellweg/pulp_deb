@@ -1,0 +1,4 @@
+Name: ragnarok
+IncomingDir: incoming
+TempDir: ./
+Default: ragnarok

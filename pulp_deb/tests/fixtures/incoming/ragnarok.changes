@@ -1,0 +1,13 @@
+Format: 1.8
+Date: Wed, 08 Jan 2020 14:19:20 +0000
+Source: edda
+Architecture: ppc64
+Version: 0.5
+Distribution: ragnarok
+Maintainer: Your Name <yourname@example.com>
+Files:
+ 8afc7bc2de48f3769bdbd0bad5a26533 5 byhand - info.txt
+Checksums-Sha1:
+ f7f4161ee6ec3f63ec49f4873d7fa8e39b3e5e7e 5 info.txt
+Checksums-Sha256:
+ 257064dab8e77b1327ed034d7730f9639c442ef1e511560023d7499ec556a454 5 info.txt

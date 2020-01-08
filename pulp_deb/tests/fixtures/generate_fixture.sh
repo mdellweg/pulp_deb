@@ -41,10 +41,14 @@ done
 cd ..
 
 cp -a ${SRCDIR}/conf .
+cp -a ${SRCDIR}/incoming .
+#reprepro include ragnarok incoming/*.changes
+reprepro processincoming ragnarok
 reprepro -C asgard includeudeb ragnarok asgard_udebs/*.udeb
 reprepro -C asgard includedeb ragnarok asgard/*.deb
 reprepro -C jotunheimr includedeb ragnarok jotunheimr/*.deb
 
+# Make it more exciting
 rm dists/ragnarok/jotunheimr/binary-armeb/Packages
 
 tar cvzf ${SRCDIR}/fixtures.tar.gz dists pool
